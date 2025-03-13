@@ -1,4 +1,5 @@
-# Carpeta del repo local
+# Este script es para pushear al GitHub, para ahorrarse tener que escribir los comandos a cada rato.
+
 DEST="$HOME/ipsaPrediction"
 
 cd "$DEST"
