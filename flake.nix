@@ -24,6 +24,7 @@
           ];
         shellHook = ''
           echo "Entorno de desarrollo activado para IPSA Prediction :D"
+          python3 obtenerDatos.py
         '';
         };
       });
