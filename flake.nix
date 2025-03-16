@@ -19,12 +19,11 @@
               # Instala paquetes de python.
               # En teoría se puede usar pip install, pero lo ideal es usar sólo el flake
               pandas numpy matplotlib seaborn scikit-learn openpyxl
-              xlrd jupyterlab yfinance tensorflow
+              xlrd jupyterlab yfinance tensorflow keras
             ]))
           ];
         shellHook = ''
           echo "Entorno de desarrollo activado para IPSA Prediction :D"
-          python3 obtenerDatos.py
         '';
         };
       });
