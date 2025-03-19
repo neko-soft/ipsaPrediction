@@ -2,14 +2,17 @@
   description = "Entorno de desarrollo modelo predicción IPSA";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
     flake-utils.url = "github:numtide/flake-utils";
   };
+
 
   outputs = { self, nixpkgs, flake-utils }:
     flake-utils.lib.eachDefaultSystem (system:
       let
-        pkgs = import nixpkgs { inherit system; };
+        pkgs = import nixpkgs { inherit system;
+                                config.allowUnfree = true;
+                              };
       in {
         devShells.default = pkgs.mkShell {
           buildInputs = with pkgs; [
@@ -25,6 +28,9 @@
         shellHook = ''
           echo "Entorno de desarrollo activado para IPSA Prediction :D"
         '';
+
+        
         };
       });
+
 }
