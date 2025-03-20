@@ -26,8 +26,7 @@
               # Instala paquetes de python.
               # En teoría se puede usar pip install, pero lo ideal es usar sólo el flake
               pandas numpy matplotlib seaborn scikit-learn openpyxl
-              xlrd jupyterlab yfinance pytz torch torchvision 
-              torchaudio
+              xlrd jupyterlab yfinance pytz torch torchvision torchaudio
             ]))
           ];
         shellHook = ''
