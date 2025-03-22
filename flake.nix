@@ -19,28 +19,42 @@
 
             cudaPackages.cudatoolkit
             cudaPackages.cudnn
+            cudaPackages.cuda_cudart
+            cudaPackages.cuda_nvcc
+            cudaPackages.cuda_cupti
+            cudaPackages.libcublas
+            cudaPackages.cuda_nvrtc
+            cudaPackages.libcufft
+            cudaPackages.libcurand
+            cudaPackages.libcusolver
+            cudaPackages.libcusparse
+            cudaPackages.nccl
+            cudaPackages.libnvjitlink
+            #
+            #
+            #
+            #
 
+	          conda
             # Instala python 3.11
             python311
             (python311.withPackages (ps: with ps; [
               # Instala paquetes de python.
               # En teoría se puede usar pip install, pero lo ideal es usar sólo el flake
               pandas numpy matplotlib seaborn scikit-learn openpyxl
-              xlrd jupyterlab yfinance pytz tensorflow
+              xlrd jupyterlab yfinance pytz tensorflow keras
             ]))
           ];
         shellHook = ''
           echo "Entorno de desarrollo activado para IPSA Prediction :D"
 
-          # Configuración de las variables de entorno CUDA
-          export CUDA_PATH=${pkgs.cudatoolkit}
-          export LD_LIBRARY_PATH=${pkgs.cudatoolkit}/lib:$LD_LIBRARY_PATH
-          export PATH=${pkgs.cudatoolkit}/bin:$PATH
 
-          # Asegurar que las variables de entorno de NVIDIA estén configuradas
-          export WLR_NO_HARDWARE_CURSORS=1  # Hacer que Wayland no use los cursores de hardware de NVIDIA
-          export __GLX_VENDOR_LIBRARY_NAME=nvidia
-          export LIBVA_DRIVER_NAME=nvidia
+          export PATH=${pkgs.cudatoolkit}/bin:$PATH
+          export CUDA_HOME=${pkgs.cudatoolkit}
+          export LD_LIBRARY_PATH=${pkgs.cudatoolkit}/lib:$LD_LIBRARY_PATH
+          export LD_LIBRARY_PATH=${pkgs.cudaPackages.cudnn}/lib:$LD_LIBRARY_PATH
+          export TF_CUDA_COMPUTE_CAPABILITIES="8.6" # Ajusta según tu GPU
+
         '';
 
         
