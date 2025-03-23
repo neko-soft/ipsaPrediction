@@ -1,0 +1,4 @@
+*.log
+
+subir.sh
+.ipynb_checkpoints
